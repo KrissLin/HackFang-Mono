@@ -1,0 +1,51 @@
+# HackFang Mono 配置
+
+font:
+  family: "HackFang Mono"
+  version: "1.0.0"
+
+# 西文半角宽度取自 Hack NF 最常见字宽；全角 = 2 × 半角
+width:
+  # 留空则自动从西文字体检测；也可手动指定（如 1000 → 全角 2000）
+  half_width: null
+
+# 中文 fallback 字体（macOS 默认苹方简体）
+cjk:
+  # 中文字形缩放（保持 2:1 字宽不变，仅缩小视觉大小；1.0=原始 em 映射）
+  scale: 0.8
+  # macOS 系统苹方 TTC 路径；不存在时回退到 cjk/fallback.ttf
+  ttc_path: "/System/Library/AssetsV2/com_apple_MobileAsset_Font7/3419f2a427639ad8c8e139149a287865a90fa17e.asset/AssetData/PingFang.ttc"
+  # PingFang SC 在 TTC 中的索引（Regular=3, Medium=7, Semibold=11, Light=15）
+  sc_indices:
+    regular: 3
+    bold: 11
+    light: 15
+
+# 西文基础字体目录（Hack Nerd Font）
+base_dir: "fonts/hack-nf"
+
+# 输出目录
+output_dir: "output"
+
+# 要构建的字重
+variants:
+  - base: "HackNerdFont-Regular.ttf"
+    weight: 400
+    style: "Regular"
+    cjk_index_key: "regular"
+    output: "HackFangMono-Regular.ttf"
+  - base: "HackNerdFont-Bold.ttf"
+    weight: 700
+    style: "Bold"
+    cjk_index_key: "bold"
+    output: "HackFangMono-Bold.ttf"
+  - base: "HackNerdFont-Italic.ttf"
+    weight: 400
+    style: "Italic"
+    cjk_index_key: "regular"
+    output: "HackFangMono-Italic.ttf"
+  - base: "HackNerdFont-BoldItalic.ttf"
+    weight: 700
+    style: "Bold Italic"
+    cjk_index_key: "bold"
+    output: "HackFangMono-BoldItalic.ttf"

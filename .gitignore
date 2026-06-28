@@ -1,0 +1,7 @@
+fonts/hack-nf/
+fonts/cjk/
+output/
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
