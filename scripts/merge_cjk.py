@@ -119,9 +119,11 @@ def build_cjk_transform(
 
     标点符号在源字体里通常只占 em 的一小部分；若按 bbox 适配，
     会被放大到接近汉字高度。固定 em→全角格的映射可保持标点原始比例。
+
+    水平方向将源 em 方块居中放入全角格，保留字形在 em 内的相对位置
+    （逗号偏左、开括号偏右等）；垂直方向按 baseline 对齐，靠下标点保持源字体底部位置。
     """
-    x_min, y_min, x_max, y_max = glyph_bounds(src_font, glyph_name)
-    src_w = max(x_max - x_min, 1.0)
+    _x_min, y_min, _x_max, y_max = glyph_bounds(src_font, glyph_name)
     src_h = max(y_max - y_min, 1.0)
 
     # 源字体 1em → 目标全角宽度，再乘以 cjk_scale 调节视觉大小
@@ -132,9 +134,10 @@ def build_cjk_transform(
     if src_h * scale > target_h:
         scale = target_h / src_h
 
-    tx = (full_width - src_w * scale) / 2.0 - x_min * scale
-    ty = (ascender + descender) / 2.0 - (y_min + y_max) / 2.0 * scale
+    tx = (full_width - src_upm * scale) / 2.0
+    ty = 0.0
     return Transform(scale, 0, 0, scale, tx, ty)
+
 
 
 def draw_transformed_glyph(

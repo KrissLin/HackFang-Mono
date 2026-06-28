@@ -2,7 +2,7 @@
 
 font:
   family: "HackFang Mono"
-  version: "1.0.0"
+  version: "1.0.3"
 
 # 西文半角宽度取自 Hack NF 最常见字宽；全角 = 2 × 半角
 width:
